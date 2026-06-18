@@ -19,17 +19,22 @@ primeiros"). Valor total empilhado R$ 4.635. Garantia 30 dias. Acesso 3 anos.
 
 ## ESTRUTURA
 ```
-vendas-metodo-remiyah.html  → landing inteira (CSS 100% inline no <head>, sem CSS externo)
-assets/
-  logo-remiyah.png          → logo (hero topbar)
-  logo-remiyah-simbolo.png  → símbolo da marca
-  foto-criador.jpg          → foto do autor (seção autoridade)
-  depo-*.jpg                → prints de depoimentos (chef-bruno, lucas, everton,
+index.html                  → landing inteira (CSS 100% inline no <head>, sem CSS externo)
+og-image.jpg                → preview redes sociais 1200x630 (símbolo + headline)
+.cpanel.yml                 → deploy cPanel (DEPLOYPATH pages/metodo-remiyah/)
+.gitignore                  → ignora .DS_Store, .claude/settings.local.json e fontes .jpg/.png/.webp
+favicon/                    → favicon.ico, *-96x96.png, apple-touch-icon.png,
+                              web-app-manifest-{192,512}.png, site.webmanifest
+assets/                     → versionados em .avif; as fontes .jpg/.png ficam locais (gitignored)
+  logo-remiyah.avif         → logo (hero topbar)
+  logo-remiyah-simbolo.avif → símbolo da marca (base do favicon e da og-image)
+  foto-criador.avif         → foto do autor (seção autoridade)
+  depo-*.avif               → prints de depoimentos (chef-bruno, lucas, everton,
                               clerinton, gabriela, emocionado, pedro, pablo, camila)
-  furadeira.png             → ilustração/apoio
+  furadeira.avif            → ilustração/apoio
 ```
-> ⚠️ **Sem favicon/, sem og-image, sem .cpanel.yml, sem .gitignore ainda.** Esta
-> pasta ainda NÃO é repo git. Ver "FALTA MONTAR".
+> ✅ Repo git ativo: **github.com/Bravo-Holding/metodo-remiyah** (público, branch
+> `master`). favicon/, og-image.jpg, .cpanel.yml e .gitignore já existem.
 
 ## SEÇÕES (ordem no HTML — classes `secao-*`)
 hero · dor · paliativo · prova-social-1 · cta-intermediario · metodo · para-quem ·
@@ -58,9 +63,10 @@ autoridade · faq · oferta-final
 - **VSL Vimeo (hero):** vai ter VSL, mas o **ID do vídeo e a duração ainda não
   foram informados**. Quando vierem, implementar com o lazy-load facade (ver
   inviolável #7).
-- **og:url / og:image:** deploy esperado em `ebravoholding.com/pages/...` —
-  **pasta exata a definir** (sugestão: `metodo-remiyah/`, não é um "desafio").
-  Criar `og-image.jpg` (1200x630).
+- ✅ **og:url / og:image — DEFINIDO.** Deploy em
+  `ebravoholding.com/pages/metodo-remiyah/`. As meta tags og/twitter e o
+  `og-image.jpg` (1200x630) já estão na página. `<title>`/`description` foram
+  preenchidos (não são mais placeholder) — revisar a copy se necessário.
 
 ## PERFORMANCE — INVIOLÁVEIS
 1. **CSS crítico inline.** Todo o CSS vive no `<style>` do `<head>` (já está
@@ -70,9 +76,10 @@ autoridade · faq · oferta-final
    via `requestIdleCallback(loadPixel, {timeout:3000})` com fallback no
    `window load`. **Não** colocar `fbq('init')` síncrono no `<head>` (mataria o
    LCP). ⚠️ Hoje o Pixel ainda NÃO está na página.
-3. **Imagens — AVIF.** Padrão do projeto. ⚠️ **As imagens atuais estão em `.jpg`/
-   `.png` — converter pra `.avif` antes de subir** (fonte fica local e
-   gitignorada). Todo print/foto entra com `loading="lazy"`. Comando:
+3. **Imagens — AVIF.** Padrão do projeto. ✅ As 13 imagens já foram convertidas pra
+   `.avif` e o HTML referencia os `.avif`; as fontes `.jpg`/`.png` ficam locais e
+   gitignoradas. Imagem nova: converter antes de subir e ignorar a fonte. Todo
+   print/foto entra com `loading="lazy"`. Comando:
    ```
    ffmpeg -y -i ORIGEM -c:v libaom-av1 -still-picture 1 -crf 30 -cpu-used 6 SAIDA.avif
    ```
@@ -152,17 +159,18 @@ do cPanel.
 `br238.hostgator.com.br` (cPanel :2083, FTP/SSH :2222), home `/home1/ewertt82`.
 Domínio `ebravoholding.com` → `/home1/ewertt82/ebravoholding.com`.
 
-**FALTA MONTAR (esta pasta ainda não está pronta pra deploy):**
-1. **`git init`** + primeiro commit (a pasta ainda não é repo).
-2. **Repo GitHub PRÓPRIO** (novo, separado das landings irmãs). Público, pro cPanel
-   clonar via HTTPS sem deploy key.
-3. **`.cpanel.yml`** com `DEPLOYPATH` (pasta de deploy a definir, ex.:
-   `pages/metodo-remiyah/`) copiando `vendas-metodo-remiyah.html` (ou renomear pra
-   `index.html`) + `og-image.jpg` + `favicon` + `assets/**/*.avif`.
-4. **`.gitignore`** (ignorar internos e as fontes `.jpg`/`.png`/`.webp` das imagens
-   convertidas pra AVIF).
-5. No cPanel: clonar o repo em `/home1/ewertt82/repositories/<nome>` e configurar
-   o Version Control.
+**JÁ MONTADO:**
+1. ✅ `git init` + commits (branch `master`).
+2. ✅ Repo GitHub PRÓPRIO público: **github.com/Bravo-Holding/metodo-remiyah**
+   (separado das landings irmãs; cPanel clona via HTTPS sem deploy key).
+3. ✅ `.cpanel.yml` com `DEPLOYPATH="$HOME/ebravoholding.com/pages/metodo-remiyah/"`
+   copiando `index.html` + `og-image.jpg` + `favicon` + `assets/*.avif`.
+4. ✅ `.gitignore` (ignora `.DS_Store`, `.claude/settings.local.json` e as fontes
+   `.jpg`/`.png`/`.webp` das imagens convertidas pra AVIF).
+
+**FALTA MONTAR:**
+5. No cPanel: clonar o repo em `/home1/ewertt82/repositories/metodo-remiyah` e
+   configurar o Version Control (passo manual no painel; SSH desligado).
 
 **Fluxo de update (depois de montado):** editar local → `git push` → no cPanel:
 "Update from Remote" + "Deploy HEAD Commit".
@@ -183,8 +191,10 @@ interface). A/B = uma branch por variante, cada uma com `DEPLOYPATH` próprio.
 ## PENDÊNCIAS ABERTAS (resumo)
 - [ ] Link de checkout Hotmart do Método Remiyah.
 - [ ] ID + duração da VSL Vimeo do hero.
-- [ ] Pasta de deploy / og:url (sugestão `pages/metodo-remiyah/`).
 - [ ] Adicionar a camada de tracking: GTM, Pixel adiado, UTM+sck, modal de lead
       (enviando `product: "metodo-remiyah"`).
-- [ ] Converter imagens pra AVIF; consolidar/desbloquear as fontes.
-- [ ] Criar favicon/, og-image.jpg, .cpanel.yml, .gitignore; `git init` + repo.
+- [ ] Consolidar/desbloquear as fontes Google (ainda ~8 `<link>` render-blocking).
+- [ ] No cPanel: clonar o repo e configurar o Version Control (deploy).
+- [x] Repo + commit inicial; favicon/, og-image.jpg, .cpanel.yml, .gitignore.
+- [x] Converter imagens pra AVIF + referências no HTML.
+- [x] Pasta de deploy / og:url definida: `pages/metodo-remiyah/`.
