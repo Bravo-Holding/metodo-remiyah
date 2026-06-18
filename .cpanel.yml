@@ -1,0 +1,8 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH="$HOME/ebravoholding.com/pages/metodo-remiyah/"
+    - /bin/mkdir -p $DEPLOYPATH
+    - /bin/cp -R index.html og-image.jpg favicon $DEPLOYPATH
+    - /bin/mkdir -p $DEPLOYPATH/assets
+    - /bin/cp assets/*.avif $DEPLOYPATH/assets/
