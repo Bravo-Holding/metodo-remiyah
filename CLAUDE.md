@@ -56,13 +56,11 @@ autoridade · faq · oferta-final
   pelas do d21d (Plus Jakarta).
 - **Autor:** Ewertton Bravo ("Criador do Método Remiyah").
 
-### A DEFINIR (preencher antes de ir ao ar — hoje são placeholder/TODO)
-- **Checkout Hotmart:** os CTAs ainda apontam pra `#oferta` / `#checkout` / `#`.
-  O link real é DIFERENTE do d21d (`W105539649V`). Assim que o dono informar o
-  link do Método Remiyah, substituir em TODOS os botões.
-- **VSL Vimeo (hero):** vai ter VSL, mas o **ID do vídeo e a duração ainda não
-  foram informados**. Quando vierem, implementar com o lazy-load facade (ver
-  inviolável #7).
+### DADOS DE CAMPANHA (já implementados)
+- ✅ **Checkout Hotmart:** `https://pay.hotmart.com/P106391383D?off=2srrhbv4`
+  (DIFERENTE do d21d). Está nos 4 CTAs com `target="_blank" rel="noopener"`.
+- ✅ **VSL Vimeo (hero):** reutiliza a do d21d — ID `1201278227`, duração `1:31 min`,
+  implementada com facade lazy-load (inviolável #7). ⚠️ confirmar se haverá VSL própria.
 - ✅ **og:url / og:image — DEFINIDO.** Deploy em
   `ebravoholding.com/pages/metodo-remiyah/`. As meta tags og/twitter e o
   `og-image.jpg` (1200x630) já estão na página. `<title>`/`description` foram
@@ -72,10 +70,10 @@ autoridade · faq · oferta-final
 1. **CSS crítico inline.** Todo o CSS vive no `<style>` do `<head>` (já está
    assim). Não extrair pra arquivo externo. Se crescer, split crítico-inline vs
    não-crítico — nunca um `<link>` bloqueante.
-2. **Pixel adiado.** Quando for adicionado, o Meta Pixel só carrega depois do LCP,
-   via `requestIdleCallback(loadPixel, {timeout:3000})` com fallback no
-   `window load`. **Não** colocar `fbq('init')` síncrono no `<head>` (mataria o
-   LCP). ⚠️ Hoje o Pixel ainda NÃO está na página.
+2. **Pixel adiado.** ✅ Implementado: o Meta Pixel carrega depois do LCP via
+   `requestIdleCallback(loadPixel, {timeout:3000})` com fallback no `window load`
+   (`PageView` + `ViewContent {value:397.00, currency:'BRL'}`). **Não** colocar
+   `fbq('init')` síncrono no `<head>` (mataria o LCP).
 3. **Imagens — AVIF.** Padrão do projeto. ✅ As 13 imagens já foram convertidas pra
    `.avif` e o HTML referencia os `.avif`; as fontes `.jpg`/`.png` ficam locais e
    gitignoradas. Imagem nova: converter antes de subir e ignorar a fonte. Todo
@@ -88,10 +86,12 @@ autoridade · faq · oferta-final
    hero/LCP, se houver, **não** deve ser lazy.
 4. **Fonts.** `preconnect` pra `fonts.googleapis.com`/`fonts.gstatic.com` +
    `display=swap`, sem render-blocking (carregar com `media="print"`+`onload` e
-   `<noscript>` de fallback). Não adicionar pesos não usados. ⚠️ **Hoje há ~7
-   `<link>` de Google Fonts duplicados e render-blocking no `<head>` — consolidar
-   num só (Archivo 700/800/900 + Inter 400/500/600/700) e tirar do critical path.**
+   `<noscript>` de fallback). Não adicionar pesos não usados. ✅ Consolidado: os ~8
+   `<link>` duplicados viraram 1 request variável não-bloqueante
+   (`Archivo:ital,wght@0,300..900;1,300..900&Inter:wght@300..900`, cobre os pesos
+   300–900 usados + o Archivo 900 itálico da citação).
 5. **GTM async** no topo do `<head>`; não duplicar nem consolidar com o Pixel.
+   ✅ Implementado (`GTM-PCKSDBV4` + noscript).
 6. **Mobile-first.** Validar cada seção no celular antes de fechar.
 7. **VSL Vimeo lazy-load (facade).** Quando a VSL entrar: o iframe do Vimeo e o
    `player.js` **só** carregam no clique, via `loadVimeo()`. Até lá, facade (play +
@@ -100,8 +100,8 @@ autoridade · faq · oferta-final
    usar iframe direto no HTML (mataria o LCP). `autoplay=1&muted=0` é ok porque o
    clique é gesto do usuário.
 
-## RASTREAMENTO DE VENDAS (UTM + sck) — A ADICIONAR (padrão obrigatório)
-> ⚠️ Ainda NÃO está na página. Replicar o padrão do d21d.
+## RASTREAMENTO DE VENDAS (UTM + sck) — ✅ IMPLEMENTADO (padrão do d21d)
+> ✅ Já está no fim do `<body>` (launcher → origem das vendas → modal).
 
 Script "Origem das Vendas" no fim do `<body>` (após o launcher Hotmart). No load,
 reescreve o `href` de todos os `<a>` injetando
@@ -114,9 +114,9 @@ reescreve o `href` de todos os `<a>` injetando
 - **Risco conhecido:** a Hotmart trunca `sck` (~limite de caracteres). Validar o
   `sck` real num clique de tráfego pago antes de escalar.
 
-## MODAL DE CAPTURA DE LEAD (antes do checkout) — A ADICIONAR
-> ⚠️ Ainda NÃO está na página. É o item que o dono pediu pra priorizar: **form
-> antes do botão de checkout**. Replicar o padrão do d21d.
+## MODAL DE CAPTURA DE LEAD (antes do checkout) — ✅ IMPLEMENTADO
+> ✅ Já está na página. Envia `product: "metodo-remiyah"` no payload (não cai no
+> default `desafio-21-dias`). Lead `value:397`. Replicou o padrão do d21d.
 
 Markup + JS no fim do `<body>`, **depois** da origem das vendas (precisa do href já
 decorado com UTM+sck). CSS inline no `<style>` (modal nasce `display:none`, zero
@@ -189,12 +189,15 @@ interface). A/B = uma branch por variante, cada uma com `DEPLOYPATH` próprio.
 7. Ao tocar em performance, conferir os 7 invioláveis acima antes de fechar.
 
 ## PENDÊNCIAS ABERTAS (resumo)
-- [ ] Link de checkout Hotmart do Método Remiyah.
-- [ ] ID + duração da VSL Vimeo do hero.
-- [ ] Adicionar a camada de tracking: GTM, Pixel adiado, UTM+sck, modal de lead
-      (enviando `product: "metodo-remiyah"`).
-- [ ] Consolidar/desbloquear as fontes Google (ainda ~8 `<link>` render-blocking).
-- [ ] No cPanel: clonar o repo e configurar o Version Control (deploy).
+- [ ] No cPanel: clonar o repo em `/home1/ewertt82/repositories/metodo-remiyah` e
+      configurar o Version Control (deploy). Passo manual no painel.
+- [ ] Validar o `sck` real num clique de tráfego pago (risco de truncamento Hotmart).
+- [ ] Confirmar a account do launcher Hotmart (hoje reusa a do d21d
+      `be7aeb20-…`) e se haverá VSL própria (hoje reusa a do d21d).
 - [x] Repo + commit inicial; favicon/, og-image.jpg, .cpanel.yml, .gitignore.
 - [x] Converter imagens pra AVIF + referências no HTML.
 - [x] Pasta de deploy / og:url definida: `pages/metodo-remiyah/`.
+- [x] Checkout Hotmart (`P106391383D`) nos 4 CTAs.
+- [x] VSL Vimeo (facade lazy-load, ID `1201278227`).
+- [x] Tracking: GTM, Pixel adiado, FB domain, UTM+sck, modal de lead.
+- [x] Fontes Google consolidadas (1 request variável, não-bloqueante).
