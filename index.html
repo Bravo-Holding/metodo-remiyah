@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCKSDBV4');</script>
+<!-- End Google Tag Manager -->
+<meta name="facebook-domain-verification" content="x3mdskvask209m6cuxpnd6964lbzp1" />
 <title>Método Remiyah | Faça o que Deus colocou no seu coração</title>
 <meta name="description" content="Descubra e finalmente faça o que Deus colocou no seu coração. Uma jornada de Gênesis à Terra Prometida para encontrar direção e propósito de vida.">
 <link rel="canonical" href="https://ebravoholding.com/pages/metodo-remiyah/">
@@ -31,18 +39,15 @@
 <meta name="twitter:description" content="Descubra e finalmente faça o que Deus colocou no seu coração. Uma jornada de Gênesis à Terra Prometida para encontrar direção e propósito de vida.">
 <meta name="twitter:image" content="https://ebravoholding.com/pages/metodo-remiyah/og-image.jpg">
 
+<!-- Fonts: 1 request consolidado (variável, cobre 300..900 + itálico), não-bloqueante -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,800;0,900;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..900;1,300..900&family=Inter:wght@300..900&display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..900;1,300..900&family=Inter:wght@300..900&display=swap"></noscript>
+<!-- VSL Vimeo: preconnect/dns-prefetch (iframe só carrega no clique) -->
+<link rel="preconnect" href="https://player.vimeo.com">
+<link rel="preconnect" href="https://f.vimeocdn.com" crossorigin>
+<link rel="dns-prefetch" href="https://i.vimeocdn.com">
 
 <style>
 /* Reset minimo pra wrappers nao colidirem com margens do body */
@@ -128,22 +133,64 @@ body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
     }.secao-hero .hero__video-wrap{
       width: 100%;
     }.secao-hero .hero__video-placeholder{
+      position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
-      background-color: #1A1A1A;
+      background: radial-gradient(circle at center, #1c1408, #0b0a08);
       border: 1px solid #2A2A2A;
       border-radius: 8px;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 14px;
+      cursor: pointer;
+      overflow: hidden;
+    }.secao-hero .hero__video-placeholder:hover .hero__video-play{
+      transform: scale(1.08);
+    }.secao-hero .hero__video-play{
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(255,106,0,.14);
+      border: 1px solid rgba(255,106,0,.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .2s ease-out;
+    }.secao-hero .hero__video-play svg{
+      width: 30px;
+      height: 30px;
+      fill: #FF6A00;
+      margin-left: 4px;
     }.secao-hero .hero__video-label{
       font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 15px;
-      color: #6B6B6B;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: rgba(250,250,250,.7);
       text-align: center;
       pointer-events: none;
       user-select: none;
+    }.secao-hero .hero__video-duration{
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(0,0,0,.6);
+      color: rgba(250,250,250,.85);
+      font-family: 'Inter', sans-serif;
+      font-size: .72rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      pointer-events: none;
+    }.secao-hero .hero__video-placeholder iframe{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
     }.secao-hero .hero__cta-wrap{
       display: flex;
       justify-content: flex-start;
@@ -1783,9 +1830,60 @@ body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
         padding: 32px 0 32px 20px;
       }
     }
+
+/* LEAD MODAL: nasce display:none (zero render até o clique). Paleta Remiyah. */
+.lead-modal{display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;padding:1rem;background:rgba(0,0,0,.74);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.lead-modal.is-open{display:flex}
+.lead-modal__card{position:relative;width:100%;max-width:25rem;background:#141414;border:1px solid #2A2A2A;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.6);padding:1.9rem 1.6rem 1.5rem;animation:leadPop 200ms ease}
+@keyframes leadPop{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+.lead-modal__close{position:absolute;top:.6rem;right:.6rem;width:2rem;height:2rem;border:none;background:transparent;color:#6B6B6B;font-size:1.6rem;line-height:1;cursor:pointer;border-radius:50%;transition:all .2s ease}
+.lead-modal__close:hover{background:#1F1F1F;color:#FAFAFA}
+.lead-modal__title{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.6rem;line-height:1.1;color:#FAFAFA;margin:0 0 .4rem}
+.lead-modal__sub{font-family:'Inter',sans-serif;font-size:.95rem;color:rgba(250,250,250,.62);margin:0 0 1.25rem}
+.lead-field{margin-bottom:.85rem}
+.lead-field label{display:block;font-family:'Inter',sans-serif;font-size:.8rem;font-weight:600;color:rgba(250,250,250,.62);margin-bottom:.35rem}
+.lead-field input{width:100%;font-family:'Inter',sans-serif;font-size:1rem;padding:.8rem .9rem;border:1.5px solid #2A2A2A;border-radius:10px;background:#0A0A0A;color:#FAFAFA;min-height:52px;transition:border-color .2s ease;box-sizing:border-box}
+.lead-field input::placeholder{color:#6B6B6B}
+.lead-field input:focus{outline:none;border-color:#FF6A00;background:#1A1A1A}
+.lead-field input.is-invalid{border-color:#E5484D}
+.lead-phone{display:flex;gap:.5rem}
+.lead-phone__ddi{display:flex;align-items:center;padding:0 .85rem;font-family:'Inter',sans-serif;font-size:1rem;font-weight:600;color:rgba(250,250,250,.62);border:1.5px solid #2A2A2A;border-radius:10px;background:#1A1A1A;white-space:nowrap}
+.lead-phone input{flex:1}
+.lead-modal__submit{width:100%;margin-top:.5rem;display:inline-block;background:#FF6A00;color:#0A0A0A;font-family:'Archivo',sans-serif;font-weight:700;font-size:16px;text-align:center;padding:16px 24px;border:none;border-radius:8px;cursor:pointer;transition:background-color .2s ease}
+.lead-modal__submit:hover:not(:disabled){background:#E55F00}
+.lead-modal__submit:disabled{background:#3A2A1A;color:#6B6B6B;cursor:not-allowed}
+.lead-modal__hint{margin:.7rem 0 0;font-family:'Inter',sans-serif;font-size:.75rem;color:#6B6B6B;text-align:center}
 </style>
+<!-- Meta Pixel: adiado para depois do LCP via requestIdleCallback -->
+<script>
+(function () {
+  function loadPixel() {
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      }; if (!f._fbq) f._fbq = n;
+      n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '25723610987317406');
+    fbq('track', 'PageView');
+    fbq('track', 'ViewContent', { value: 397.00, currency: 'BRL' });
+  }
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(loadPixel, { timeout: 3000 });
+  } else {
+    window.addEventListener('load', loadPixel);
+  }
+})();
+</script>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCKSDBV4"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=25723610987317406&ev=PageView&noscript=1" alt="" /></noscript>
 
 <div class="secao-hero">
 <section class="hero" aria-label="Seção principal">
@@ -1823,16 +1921,18 @@ body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
         </ul>
 
         <div class="hero__cta-wrap">
-          <a href="#oferta" class="hero__cta" role="button">
+          <a href="https://pay.hotmart.com/P106391383D?off=2srrhbv4" target="_blank" rel="noopener" class="hero__cta" role="button">
             Quero cumprir o que Deus me chamou a fazer
           </a>
         </div>
       </div>
 
-      <!-- VIDEO PLACEHOLDER -->
-      <div class="hero__video-wrap" aria-hidden="true">
-        <div class="hero__video-placeholder">
-          <span class="hero__video-label">[Seu vídeo de apresentação aqui]</span>
+      <!-- VSL Vimeo (facade lazy-load: iframe só carrega no clique) -->
+      <div class="hero__video-wrap">
+        <div class="hero__video-placeholder" id="video-embed" role="button" tabindex="0" aria-label="Assistir ao vídeo de apresentação" onclick="loadVimeo()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();loadVimeo()}">
+          <span class="hero__video-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="hero__video-label">Assistir ao vídeo</span>
+          <span class="hero__video-duration">1:31 min</span>
         </div>
       </div>
 
@@ -2040,7 +2140,7 @@ body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
       <p class="cta-mid-section__body">
         Todas essas pessoas tinham a mesma coisa que você tem agora: o que fazer já estava claro, faltava sair do lugar. A diferença foi terem um caminho para começar hoje, não na próxima segunda.
       </p>
-      <a href="#" class="cta-mid-section__btn" role="button">
+      <a href="https://pay.hotmart.com/P106391383D?off=2srrhbv4" target="_blank" rel="noopener" class="cta-mid-section__btn" role="button">
         Quero o caminho para começar hoje
       </a>
     </div>
@@ -2444,7 +2544,7 @@ body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
         <p class="sv-price-installment">
           Ou em até 12 vezes de R$ 33,08. Acesso por 3 anos, em vez de 1.
         </p>
-        <a href="#checkout" class="sv-cta-btn" role="button">Quero entrar por R$ 397</a>
+        <a href="https://pay.hotmart.com/P106391383D?off=2srrhbv4" target="_blank" rel="noopener" class="sv-cta-btn" role="button">Quero entrar por R$ 397</a>
         <p class="sv-access-note">Acesso imediato após confirmação do pagamento.</p>
       </div>
 
@@ -2774,7 +2874,7 @@ body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
 
       <!-- Botão CTA -->
       <div class="ofr-cta-wrapper">
-        <a href="#checkout" class="ofr-cta-btn" role="button">
+        <a href="https://pay.hotmart.com/P106391383D?off=2srrhbv4" target="_blank" rel="noopener" class="ofr-cta-btn" role="button">
           Quero começar hoje por R$&nbsp;397
         </a>
       </div>
@@ -2791,7 +2891,237 @@ body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
   </section>
 </div>
 
+<!-- HOTMART LAUNCHER SDK: carregado de forma nao-bloqueante apos LCP -->
+<script id="hotmart_launcher_script">
+  (function () {
+    function loadHotmart() {
+      (function (l, a, u, n, c, h, e, r) {
+        l['HotmartLauncherObject'] = c; l[c] = l[c] || function () {
+          (l[c].q = l[c].q || []).push(arguments);
+        }; l[c].l = 1 * new Date();
+        h = a.createElement(u); e = a.getElementsByTagName(u)[0];
+        h.async = 1; h.src = 'https://launcher.hotmart.com/launcher.js';
+        e.parentNode.insertBefore(h, e);
+      })(window, document, 'script', 'https://launcher.hotmart.com/launcher.js', 'hot');
+      hot('account', 'be7aeb20-4303-3f6c-b0c3-3050352275ba');
+    }
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadHotmart, { timeout: 4000 });
+    } else {
+      window.addEventListener('load', loadHotmart);
+    }
+  })();
+</script>
 
+<!-- ORIGEM DAS VENDAS (UTM + sck): reescreve hrefs no load; injeta sck nos links Hotmart/Kiwify -->
+<script>
+  var currentUrl = window.location.href;
+  var url = new URL(currentUrl);
+  var pagePath = url.pathname.replace(/^\/|\/$/g, '');
+  var cleanReferrer = document.referrer ? document.referrer.replace(/^https?:\/\//, '') : '';
+  var utmSource = url.searchParams.get('utm_source') || cleanReferrer || 'Direto';
+  var utmMedium = url.searchParams.get('utm_medium') || 'Organico';
+  var utmCampaign = url.searchParams.get('utm_campaign') || 'Direto';
+  var utmContent = url.searchParams.get('utm_content') || pagePath || 'Home';
+  var utmTerm = url.searchParams.get('utm_term') || '';
+  var links = document.querySelectorAll('a');
+  for (var i = 0; i < links.length; i++) {
+    if (!links[i].hasAttribute('popup')) {
+      var destinationUrl = links[i].href;
+      if (!destinationUrl.includes('#')) {
+        var hasUtmParams = destinationUrl.includes('utm_source') ||
+          destinationUrl.includes('utm_medium') ||
+          destinationUrl.includes('utm_campaign') ||
+          destinationUrl.includes('utm_content') ||
+          destinationUrl.includes('utm_term');
+        if (!hasUtmParams) {
+          destinationUrl += (destinationUrl.indexOf('?') === -1 ? '?' : '&');
+          destinationUrl += 'utm_source=' + utmSource;
+          destinationUrl += '&utm_medium=' + utmMedium;
+          destinationUrl += '&utm_campaign=' + utmCampaign;
+          destinationUrl += '&utm_content=' + utmContent;
+          destinationUrl += '&utm_term=' + utmTerm;
+          if (destinationUrl.includes('pay.hotmart') || destinationUrl.includes('pay.kiwify')) {
+            var sckValue = utmSource + '-' + utmMedium + '-' + utmCampaign + '-' + utmContent + '-' + utmTerm;
+            destinationUrl += '&sck=' + sckValue;
+          }
+          links[i].href = destinationUrl;
+        }
+      }
+    }
+  }
+</script>
+
+<!-- LEAD MODAL: captura nome/email/whatsapp antes do checkout. Dispara Lead (Pixel + CAPI) e grava no Supabase. Roda apos a origem-das-vendas pra ler o href ja decorado com UTM+sck. -->
+<div class="lead-modal" id="lead-modal" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
+  <div class="lead-modal__card">
+    <button type="button" class="lead-modal__close" id="lead-modal-close" aria-label="Fechar">&times;</button>
+    <h2 class="lead-modal__title" id="lead-modal-title">Falta só um passo</h2>
+    <p class="lead-modal__sub">Preencha seus dados para garantir seu acesso ao Método Remiyah.</p>
+    <form id="lead-form" novalidate>
+      <div class="lead-field">
+        <label for="lead-name">Nome completo</label>
+        <input type="text" id="lead-name" name="name" autocomplete="name" placeholder="Seu nome completo" required />
+      </div>
+      <div class="lead-field">
+        <label for="lead-email">E-mail</label>
+        <input type="email" id="lead-email" name="email" autocomplete="email" inputmode="email" placeholder="Insira seu melhor e-mail" required />
+      </div>
+      <div class="lead-field">
+        <label for="lead-phone">WhatsApp</label>
+        <div class="lead-phone">
+          <span class="lead-phone__ddi">+55</span>
+          <input type="tel" id="lead-phone" name="phone" autocomplete="tel-national" inputmode="numeric" placeholder="(00) 0 0000 0000" required />
+        </div>
+      </div>
+      <button type="submit" class="lead-modal__submit" id="lead-submit" disabled>
+        Quero garantir meu acesso
+      </button>
+      <p class="lead-modal__hint">Seus dados ficam seguros. Sem spam.</p>
+    </form>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var EDGE_URL = 'https://iodseuinjheacuoptaau.supabase.co/functions/v1/capture-lead';
+    var PIXEL_ID = '25723610987317406';
+    var VALUE = 397.00, CURRENCY = 'BRL';
+    var FALLBACK_CHECKOUT = 'https://pay.hotmart.com/P106391383D?off=2srrhbv4';
+
+    var modal = document.getElementById('lead-modal');
+    var form = document.getElementById('lead-form');
+    var elName = document.getElementById('lead-name');
+    var elEmail = document.getElementById('lead-email');
+    var elPhone = document.getElementById('lead-phone');
+    var elSubmit = document.getElementById('lead-submit');
+    var elClose = document.getElementById('lead-modal-close');
+    var checkoutHref = null;   // href ja decorado com UTM+sck, guardado no clique
+    var submitting = false;
+
+    function getCookie(name) {
+      var m = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+      return m ? m.pop() : '';
+    }
+    function getParam(name) {
+      return new URLSearchParams(window.location.search).get(name) || '';
+    }
+    function digits(s) { return (s || '').replace(/\D/g, ''); }
+    function emailOk(v) { return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.trim()); }
+    function nameOk(v) { return v.trim().split(/\s+/).filter(Boolean).length >= 2; }
+    function phoneOk(v) { var d = digits(v); return d.length >= 10 && d.length <= 11; }
+
+    function validate() {
+      var ok = nameOk(elName.value) && emailOk(elEmail.value) && phoneOk(elPhone.value);
+      elSubmit.disabled = !ok;
+      return ok;
+    }
+    [elName, elEmail, elPhone].forEach(function (el) {
+      el.addEventListener('input', validate);
+    });
+
+    function openModal(href) {
+      checkoutHref = href;
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      setTimeout(function () { elName.focus(); }, 50);
+    }
+    function closeModal() {
+      modal.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    // Intercepta os botoes de checkout (listener delegado; href ja decorado pelo script de UTM/sck)
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href*="pay.hotmart"]');
+      if (!a) return;
+      e.preventDefault();
+      openModal(a.href);
+    });
+
+    elClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (submitting || !validate()) return;
+      submitting = true;
+      elSubmit.disabled = true;
+      elSubmit.textContent = 'Aguarde...';
+
+      var fullName = elName.value.trim().replace(/\s+/g, ' ');
+      var parts = fullName.split(' ');
+      var firstName = (parts[0] || '').toLowerCase();
+      var lastName = parts.slice(1).join(' ').toLowerCase();
+      var email = elEmail.value.trim().toLowerCase();
+      var phone = '55' + digits(elPhone.value);  // E.164 sem '+', padrao de match da Meta
+
+      var eventId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
+        : 'lead-' + Date.now() + '-' + Math.floor(Math.random() * 1e6);
+
+      var fbp = getCookie('_fbp');
+      var fbc = getCookie('_fbc');
+      if (!fbc) {
+        var fbclid = getParam('fbclid');
+        if (fbclid) fbc = 'fb.1.' + Date.now() + '.' + fbclid;
+      }
+
+      // 1. Pixel Lead com Advanced Matching (o fbq hasheia os valores crus)
+      if (window.fbq) {
+        fbq('init', PIXEL_ID, { em: email, ph: phone, fn: firstName, ln: lastName, external_id: email });
+        fbq('track', 'Lead', { value: VALUE, currency: CURRENCY }, { eventID: eventId });
+      }
+
+      // 2. Grava lead + CAPI (server-side). keepalive: sobrevive ao redirect.
+      var payload = {
+        product: 'metodo-remiyah',
+        full_name: fullName, first_name: firstName, last_name: lastName,
+        email: email, phone: phone,
+        utm_source: getParam('utm_source'), utm_medium: getParam('utm_medium'),
+        utm_campaign: getParam('utm_campaign'), utm_content: getParam('utm_content'),
+        utm_term: getParam('utm_term'),
+        sck: (function () { var m = (checkoutHref || '').match(/[?&]sck=([^&]+)/); return m ? decodeURIComponent(m[1]) : ''; })(),
+        fbp: fbp, fbc: fbc,
+        page_path: window.location.pathname,
+        event_id: eventId,
+        event_source_url: window.location.href
+      };
+      try {
+        fetch(EDGE_URL, {
+          method: 'POST', keepalive: true,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).catch(function () {});
+      } catch (err) {}
+
+      // 3. Segue pro checkout (UTM+sck ja no href). Prefill Hotmart desligado (privacidade).
+      var dest = checkoutHref || FALLBACK_CHECKOUT;
+      setTimeout(function () { window.location.href = dest; }, 250);
+    });
+  })();
+</script>
+
+<!-- VSL lazy-load: iframe Vimeo + player.js so carregam no clique (fora do critical path) -->
+<script>
+  function loadVimeo() {
+    var embed = document.getElementById('video-embed');
+    if (!embed || embed.dataset.loaded) return;
+    embed.dataset.loaded = '1';
+    embed.style.cursor = 'default';
+    var iframe = document.createElement('iframe');
+    iframe.src = 'https://player.vimeo.com/video/1201278227?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=0&loop=0';
+    iframe.allow = 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share';
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    iframe.title = 'Método Remiyah — Vídeo de apresentação';
+    iframe.setAttribute('allowfullscreen', '');
+    embed.innerHTML = '';
+    embed.appendChild(iframe);
+    var s = document.createElement('script');
+    s.src = 'https://player.vimeo.com/api/player.js'; s.async = true;
+    document.head.appendChild(s);
+  }
+</script>
 
 </body>
 </html>
