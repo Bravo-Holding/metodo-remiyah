@@ -2942,8 +2942,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           destinationUrl += '&utm_content=' + utmContent;
           destinationUrl += '&utm_term=' + utmTerm;
           if (destinationUrl.includes('pay.hotmart') || destinationUrl.includes('pay.kiwify')) {
-            var sckValue = utmSource + '-' + utmMedium + '-' + utmCampaign + '-' + utmContent + '-' + utmTerm;
-            destinationUrl += '&sck=' + sckValue;
+            // Hotmart corta o sck em 30 chars: usa so utm_content (criativo), sanitiza / e _ (proibido) e tira hifen sobrando.
+            var sckValue = (utmContent || utmCampaign || pagePath || 'Home')
+              .replace(/[\/_]/g, '-')
+              .replace(/-+$/, '')
+              .slice(0, 30);
+            destinationUrl += '&sck=' + encodeURIComponent(sckValue);
           }
           links[i].href = destinationUrl;
         }

@@ -107,12 +107,18 @@ Script "Origem das Vendas" no fim do `<body>` (após o launcher Hotmart). No loa
 reescreve o `href` de todos os `<a>` injetando
 `utm_source/medium/campaign/content/term` (fallback: referrer limpo → `Direto` /
 `Organico` / path → `Home`); **só** em links `pay.hotmart`/`pay.kiwify` anexa
-`&sck=<source-medium-campaign-content-term>`. O `sck` é o que a Hotmart mostra como
-**origem da venda**.
+`&sck=<utm_content>`. O `sck` é o que a Hotmart mostra como **origem da venda**.
 - Pula links com `#` (âncoras) e os que já têm UTM.
 - **Não** mover pro `<head>` (precisa do DOM montado). Não consolidar com GTM/Pixel.
-- **Risco conhecido:** a Hotmart trunca `sck` (~limite de caracteres). Validar o
-  `sck` real num clique de tráfego pago antes de escalar.
+- ✅ **Truncamento resolvido (2026-06-19):** a Hotmart corta o `sck` em **30
+  caracteres** (limite oficial; `_` é proibido). A fórmula antiga concatenava os 5
+  UTMs (`source-medium-campaign-content-term`) e estourava 30 em todo clique pago
+  (44–62 chars), chegando truncada e inútil no painel. **Corrigido:** o `sck` agora
+  usa só `utm_content` (criativo/anúncio, maior granularidade de atribuição),
+  sanitizado (`/` e `_` → `-`), sem hífen sobrando, cortado em 30 e `encodeURIComponent`.
+  Os 5 UTMs completos seguem no link e aparecem na **aba UTM** do painel Hotmart.
+  Se precisar separar por campanha no `sck`, nomear o `utm_content` já com prefixo
+  (ex: `frio-vsl01`) na montagem do anúncio.
 
 ## MODAL DE CAPTURA DE LEAD (antes do checkout) — ✅ IMPLEMENTADO
 > ✅ Já está na página. O Pixel do navegador manda Lead `value:397`. Replicou o d21d.
@@ -192,7 +198,7 @@ interface). A/B = uma branch por variante, cada uma com `DEPLOYPATH` próprio.
 7. Ao tocar em performance, conferir os 7 invioláveis acima antes de fechar.
 
 ## PENDÊNCIAS ABERTAS (resumo)
-- [ ] Validar o `sck` real num clique de tráfego pago (risco de truncamento Hotmart).
+- [x] `sck` corrigido p/ limite de 30 chars da Hotmart (só `utm_content`, sanitizado).
 - [ ] Confirmar a account do launcher Hotmart (hoje reusa a do d21d
       `be7aeb20-…`) e se haverá VSL própria (hoje reusa a do d21d).
 - [x] Deploy no ar: `ebravoholding.com/pages/metodo-remiyah/` (cPanel Version Control).
