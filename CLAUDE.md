@@ -139,11 +139,11 @@ até nome 2+ palavras, e-mail por regex e WhatsApp 10–11 dígitos). No submit:
 Não recriar. ✅ **CORRIGIDO (2026-06-19, função `capture-lead` v12):** a função agora
 lê `body.product`, `body.value` e `body.currency` do payload, com defaults
 retrocompatíveis (`product='desafio-21-dias'`, `value=67`, `currency='BRL'` quando
-não enviados — d21d e procrastinação não mandam, então não mudam). O modal da Remiyah
-envia `product:'metodo-remiyah'` + `value:397` → grava certo e CAPI bate 397.
-⚠️ **As landings irmãs (d21d, procrastinação) ainda mandam só os dados crus e caem no
-default `desafio-21-dias`** — precisam adequar o payload do modal (`product`+`value`)
-pra taggear certo. Até lá, distinguir por `page_path`.
+não enviados). O modal da Remiyah envia `product:'metodo-remiyah'` + `value:397`
+→ grava certo e CAPI bate 397. ✅ d21d e procrastinação também foram adequados
+(mandam `product:'desafio-21-dias'` + `value:67` explícito; mesmo produto, então o
+dado não muda — só deixou de depender do default). **Separação:
+`product='metodo-remiyah'` (este) vs `product='desafio-21-dias'` (as duas irmãs).**
 **Depende de secrets na Edge Function:** `META_CAPI_TOKEN` + `META_PIXEL_ID` (e
 `META_TEST_EVENT_CODE` opcional). CORS da função já libera `ebravoholding.com`.
 
@@ -172,11 +172,10 @@ Domínio `ebravoholding.com` → `/home1/ewertt82/ebravoholding.com`.
 4. ✅ `.gitignore` (ignora `.DS_Store`, `.claude/settings.local.json` e as fontes
    `.jpg`/`.png`/`.webp` das imagens convertidas pra AVIF).
 
-**FALTA MONTAR:**
-5. No cPanel: clonar o repo em `/home1/ewertt82/repositories/metodo-remiyah` e
-   configurar o Version Control (passo manual no painel; SSH desligado).
+5. ✅ cPanel: repo clonado em `/home1/ewertt82/repositories/metodo-remiyah` e Version
+   Control configurado. **Está no ar em `ebravoholding.com/pages/metodo-remiyah/` (HTTP 200).**
 
-**Fluxo de update (depois de montado):** editar local → `git push` → no cPanel:
+**Fluxo de update:** editar local → `git push` → no cPanel:
 "Update from Remote" + "Deploy HEAD Commit".
 
 **Limitação:** o cPanel só faz deploy do HEAD de uma branch (não puxa tag pela
@@ -193,13 +192,11 @@ interface). A/B = uma branch por variante, cada uma com `DEPLOYPATH` próprio.
 7. Ao tocar em performance, conferir os 7 invioláveis acima antes de fechar.
 
 ## PENDÊNCIAS ABERTAS (resumo)
-- [ ] No cPanel: clonar o repo em `/home1/ewertt82/repositories/metodo-remiyah` e
-      configurar o Version Control (deploy). Passo manual no painel.
 - [ ] Validar o `sck` real num clique de tráfego pago (risco de truncamento Hotmart).
 - [ ] Confirmar a account do launcher Hotmart (hoje reusa a do d21d
       `be7aeb20-…`) e se haverá VSL própria (hoje reusa a do d21d).
-- [ ] Backend (Edge `capture-lead`): passar a ler `body.product` e `value/currency`
-      do payload (hoje ignora product e CAPI manda 67). Retrocompatível com d21d.
+- [x] Deploy no ar: `ebravoholding.com/pages/metodo-remiyah/` (cPanel Version Control).
+- [x] Backend `capture-lead` v12 product-aware; modal manda product/value.
 - [x] Repo + commit inicial; favicon/, og-image.jpg, .cpanel.yml, .gitignore.
 - [x] Converter imagens pra AVIF + referências no HTML.
 - [x] Pasta de deploy / og:url definida: `pages/metodo-remiyah/`.
