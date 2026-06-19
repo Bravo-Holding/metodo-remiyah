@@ -59,8 +59,8 @@ autoridade · faq · oferta-final
 ### DADOS DE CAMPANHA (já implementados)
 - ✅ **Checkout Hotmart:** `https://pay.hotmart.com/P106391383D?off=2srrhbv4`
   (DIFERENTE do d21d). Está nos 4 CTAs com `target="_blank" rel="noopener"`.
-- ✅ **VSL Vimeo (hero):** reutiliza a do d21d — ID `1201278227`, duração `1:31 min`,
-  implementada com facade lazy-load (inviolável #7). ⚠️ confirmar se haverá VSL própria.
+- ✅ **VSL Vimeo (hero):** VSL PRÓPRIA da Remiyah — ID `1202932332`, duração `12:38 min`,
+  implementada com facade lazy-load (inviolável #7).
 - ✅ **og:url / og:image — DEFINIDO.** Deploy em
   `ebravoholding.com/pages/metodo-remiyah/`. As meta tags og/twitter e o
   `og-image.jpg` (1200x630) já estão na página. `<title>`/`description` foram
@@ -199,14 +199,13 @@ interface). A/B = uma branch por variante, cada uma com `DEPLOYPATH` próprio.
 
 ## PENDÊNCIAS ABERTAS (resumo)
 - [x] `sck` corrigido p/ limite de 30 chars da Hotmart (só `utm_content`, sanitizado).
-- [ ] Confirmar a account do launcher Hotmart (hoje reusa a do d21d
-      `be7aeb20-…`) e se haverá VSL própria (hoje reusa a do d21d).
+- [ ] Confirmar a account do launcher Hotmart (hoje reusa a do d21d `be7aeb20-…`).
 - [x] Deploy no ar: `ebravoholding.com/pages/metodo-remiyah/` (cPanel Version Control).
 - [x] Backend `capture-lead` v12 product-aware; modal manda product/value.
 - [x] Repo + commit inicial; favicon/, og-image.jpg, .cpanel.yml, .gitignore.
 - [x] Converter imagens pra AVIF + referências no HTML.
 - [x] Pasta de deploy / og:url definida: `pages/metodo-remiyah/`.
 - [x] Checkout Hotmart (`P106391383D`) nos 4 CTAs.
-- [x] VSL Vimeo (facade lazy-load, ID `1201278227`).
+- [x] VSL própria (facade lazy-load, ID `1202932332`, 12:38 min).
 - [x] Tracking: GTM, Pixel adiado, FB domain, UTM+sck, modal de lead.
 - [x] Fontes Google consolidadas (1 request variável, não-bloqueante).
