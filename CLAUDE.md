@@ -115,8 +115,9 @@ reescreve o `href` de todos os `<a>` injetando
   `sck` real num clique de tráfego pago antes de escalar.
 
 ## MODAL DE CAPTURA DE LEAD (antes do checkout) — ✅ IMPLEMENTADO
-> ✅ Já está na página. Envia `product: "metodo-remiyah"` no payload (não cai no
-> default `desafio-21-dias`). Lead `value:397`. Replicou o padrão do d21d.
+> ✅ Já está na página. O Pixel do navegador manda Lead `value:397`. Replicou o d21d.
+> ⚠️ Validado via curl + Test Events (2026-06-19): a Edge Function **ignora**
+> `body.product` e o CAPI manda `value:67` hardcoded (ver bloco abaixo).
 
 Markup + JS no fim do `<body>`, **depois** da origem das vendas (precisa do href já
 decorado com UTM+sck). CSS inline no `<style>` (modal nasce `display:none`, zero
@@ -135,11 +136,15 @@ até nome 2+ palavras, e-mail por regex e WhatsApp 10–11 dígitos). No submit:
   desligado por privacidade.
 
 **Backend é COMPARTILHADO** com as landings irmãs — tabela/RLS/Edge/CAPI já existem
-e foram testados. Não recriar. Os leads do Método Remiyah se distinguem por
-`page_path` (o caminho de deploy desta landing). ⚠️ **Atenção:** como reusa o
-mesmo Supabase do d21d, o campo `product` cai no default `desafio-21-dias` se não
-for sobrescrito — **enviar `product: "metodo-remiyah"` explicitamente no payload**
-pra não misturar com as vendas do outro produto no relatório.
+e foram testados. Não recriar. ⚠️ **GAPS CONFIRMADOS (2026-06-19), backend ainda
+não corrigido por decisão do dono:**
+1. A função `capture-lead` **NÃO lê `body.product`** — todo lead grava no default
+   `desafio-21-dias`. O `product:"metodo-remiyah"` que o front manda é ignorado.
+   Até a função ser atualizada, **os leads da Remiyah só se distinguem por
+   `page_path`** (`/pages/metodo-remiyah/`).
+2. O **CAPI manda `value:67` hardcoded** (valor do d21d), enquanto o Pixel do
+   navegador da Remiyah manda `value:397` — desencontro no mesmo evento.
+   Correção retrocompatível pendente: ler `product` e `value/currency` do payload.
 **Depende de secrets na Edge Function:** `META_CAPI_TOKEN` + `META_PIXEL_ID` (e
 `META_TEST_EVENT_CODE` opcional). CORS da função já libera `ebravoholding.com`.
 
@@ -194,6 +199,8 @@ interface). A/B = uma branch por variante, cada uma com `DEPLOYPATH` próprio.
 - [ ] Validar o `sck` real num clique de tráfego pago (risco de truncamento Hotmart).
 - [ ] Confirmar a account do launcher Hotmart (hoje reusa a do d21d
       `be7aeb20-…`) e se haverá VSL própria (hoje reusa a do d21d).
+- [ ] Backend (Edge `capture-lead`): passar a ler `body.product` e `value/currency`
+      do payload (hoje ignora product e CAPI manda 67). Retrocompatível com d21d.
 - [x] Repo + commit inicial; favicon/, og-image.jpg, .cpanel.yml, .gitignore.
 - [x] Converter imagens pra AVIF + referências no HTML.
 - [x] Pasta de deploy / og:url definida: `pages/metodo-remiyah/`.
